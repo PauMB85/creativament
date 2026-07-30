@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Marketing site for Creativament (psychology / creativity / talent services), built with **Astro 7.1.6**, static output, no framework integrations, no tests. Requires Node >= 22.12. Not a git repository yet.
+Marketing site for Creativament (psychology / creativity / talent services), built with **Astro 7.1.6**, static output, no framework integrations, no tests. Requires Node >= 22.12. Lives at `github.com/PauMB85/creativament`; every push to `main` auto-deploys the preview to GitHub Pages.
 
 ```bash
 npm run dev       # http://localhost:4321
@@ -31,9 +31,11 @@ Because styles are scoped, a selector only matches elements in the same componen
 
 **Calendar filter contract.** The script in [src/components/Calendar.astro](src/components/Calendar.astro) matches `.chip[data-filter]` against `.event-card[data-category]` by exact string and toggles `.hidden`; `all` is special-cased. Both sides are generated from `activityFilters` / `activities`, so keeping the union type honest is what keeps them in sync.
 
-**All colors are tokens.** `:root` in `global.css` is the single source of truth; no component may write a color literal (`grep -rnE '#[0-9a-f]{3,8}|rgba?\(' src | grep -v global.css` must come back empty). Tokens are grouped: brand, text, surfaces, lines, pastels (`--pastel-*` for value icons, `--blob-*` for activity blobs), effects. `--yellow` and `--purple` are declared but unused — brand colors kept pending confirmation, not dead code to delete on sight.
+**All colors are tokens.** `:root` in `global.css` is the single source of truth; no component may write a color literal (`grep -rnE '#[0-9a-f]{3,8}|rgba?\(' src | grep -v global.css | grep -v 'rgb(var('` must come back empty — the last filter spares the documented channel pattern). Tokens are grouped: brand, text, surfaces, lines, pastels (`--pastel-*` for value icons, `--blob-*` for activity blobs), effects. `--yellow` and `--purple` are declared but unused — brand colors kept pending confirmation, not dead code to delete on sight.
 
 Colors that need transparency are stored as **channel lists** (`--cream-rgb: 255 253 249`) and consumed as `rgb(var(--cream-rgb) / 0.93)`; the solid token is derived from the channels (`--cream: rgb(var(--cream-rgb))`) so there is still one definition. Do not switch these to relative color syntax (`rgb(from var(--x) r g b / a)`) — it renders a measurably different result inside the hero's radial gradient.
+
+**The pink is split by contrast, not by taste.** `--pink` (#ef3d86) is only 3.70:1 on white, so it is reserved for decoration, underlines, icons and text at 18px or larger. Small text — and any fill carrying small text: primary button, active chip, selected day, eyebrow, CTA links — uses `--pink-dark`; `--pink-darker` is their hover. Swapping one for the other silently breaks WCAG AA.
 
 The class names on the decorative shapes stay fixed: event blobs are `blue` / `sky` / `yellow` / `blush` / `coral` / `pink` / `mint` / `cream` (`Calendar.astro`), value icons are `green` / `peach` / `pink` / `lilac` (`Values.astro`). Both `pink` classes resolve to `--pastel-pink`.
 
@@ -62,4 +64,6 @@ The migration was verified pixel-identical against the prototype at 1440 / 1000 
 
 ## Accessibility baseline already in place
 
-Skip link, `aria-expanded` synced on the mobile menu toggle, `aria-label` on nav/social/month controls, `.sr-only` labels on inputs, decorative visuals marked `aria-hidden`. Preserve these when editing markup.
+Skip link, `aria-expanded` synced on the mobile menu toggle, `aria-label` on nav/social/month controls, `.sr-only` labels on inputs, decorative visuals marked `aria-hidden`. Also: a global `:focus-visible` ring, a `prefers-reduced-motion` block, `aria-pressed` on the filter chips kept in sync by the script, an `aria-live` status region announcing the filtered count, and 44px touch targets on the month arrows and social icons (widened with `::before`, so the 22px gap between social icons is load-bearing — shrink it and the hit areas overlap).
+
+Contrast is verified against WCAG AA across the text palette; check any new color before adding it. Preserve all of this when editing markup.

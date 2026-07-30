@@ -2,9 +2,14 @@
 /* Aquesta és l'única font de veritat de la paleta: cap component hauria
    d'escriure un color literal. */
 :root {
-  /* Marca */
+  /* Marca.
+     Regla de contrast: --pink no arriba a 4.5:1 sobre blanc (3.70:1), així que
+     només s'usa en decoració, superfícies grans i text de 18px o més.
+     Qualsevol text petit —i qualsevol fons que en porti— fa servir --pink-dark
+     (4.66:1); --pink-darker és l'estat de hover d'aquests. */
   --pink: #ef3d86;
   --pink-dark: #d92972;
+  --pink-darker: #b01a55;
   --green: #82ae62;
   --yellow: #f2b84d; /* pendent: definit a la marca, encara sense ús */
   --purple: #7154bd; /* pendent: definit a la marca, encara sense ús */
@@ -13,8 +18,8 @@
   --ink: #18345f;
   --ink-soft: #53627a;
   --text-on-brand: #fff; /* text sobre fons rosa */
-  --text-date: #c99964; /* dia de la setmana a les targetes d'activitat */
-  --text-tag: #758a63; /* etiqueta de categoria */
+  --text-date: #966c3c; /* dia de la setmana a les targetes d'activitat */
+  --text-tag: #647753; /* etiqueta de categoria */
 
   /* Superfícies */
   --cream-rgb: 255 253 249;
@@ -134,7 +139,7 @@ textarea {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--pink);
+  color: var(--pink-dark);
   font-weight: 700;
 }
 
@@ -180,23 +185,48 @@ textarea {
 }
 
 .btn-primary {
-  background: var(--pink);
+  background: var(--pink-dark);
   color: var(--text-on-brand);
 }
 
 .btn-primary:hover {
-  background: var(--pink-dark);
+  background: var(--pink-darker);
   transform: translateY(-1px);
 }
 
 .btn-outline {
-  border-color: var(--pink);
-  color: var(--pink);
+  border-color: var(--pink-dark);
+  color: var(--pink-dark);
   background: transparent;
 }
 
 .btn-outline:hover {
   background: var(--pink-wash);
+}
+
+/* Accessibilitat ------------------------------------------------------ */
+/* Indicador de focus per a qui navega amb teclat. Abans només el tenia
+   l'enllaç de salt; la resta depenia del contorn per defecte del navegador,
+   invisible sobre els botons i els xips amb fons propi. */
+:focus-visible {
+  outline: 2px solid var(--pink-dark);
+  outline-offset: 3px;
+}
+
+/* Qui ha demanat menys moviment al sistema no ha de patir el desplaçament
+   suau, les transicions ni els desplaçaments en passar el cursor. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Responsive ---------------------------------------------------------- */

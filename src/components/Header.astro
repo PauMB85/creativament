@@ -1,5 +1,6 @@
 ---
 import { navLinks } from '../data/site';
+import { asset, route } from '../lib/asset';
 
 const activeHref = '#inici';
 
@@ -8,7 +9,6 @@ const activeHref = '#inici';
  * de l'inici perquè també funcionin des de les pàgines legals.
  */
 const home = route('');
-import { asset, route } from '../lib/asset';
 ---
 
 <header class="site-header" id="top">
@@ -112,6 +112,7 @@ import { asset, route } from '../lib/asset';
 
   .menu-toggle {
     display: none;
+    min-height: 44px;
     border: 1px solid var(--line);
     background: var(--surface);
     border-radius: 999px;

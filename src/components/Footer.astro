@@ -58,14 +58,23 @@ import { asset, route } from '../lib/asset';
   .socials {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 22px;
     font-size: 12px;
   }
 
   .socials a {
+    position: relative;
     display: flex;
     color: var(--ink);
     transition: 0.2s;
+  }
+
+  /* Zona clicable de 44px al voltant d'una icona de 22px. La separació de 22px
+     entre icones és exactament la que evita que dues zones se solapin. */
+  .socials a::before {
+    content: "";
+    position: absolute;
+    inset: -11px;
   }
 
   .socials a:hover {

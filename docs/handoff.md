@@ -147,9 +147,13 @@ Per decidir amb el client:
    vindran d'un CMS? Això condiciona si el calendari es fa dinàmic.
 5. Pàgines legals (avís legal, privacitat, cookies) i si cal banner de cookies.
 
-Tècnicament pendent: sistematitzar l'escala tipogràfica i de radis, `:focus-visible` propi,
-comprovar contrastos, metadades socials, i `git init` (el projecte encara no està sota control de
-versions).
+Tècnicament pendent: sistematitzar l'escala tipogràfica i de radis, metadades socials i favicon,
+i allotjar les tipografies al propi lloc per eliminar l'única connexió a un tercer.
+
+Fet des de la primera versió d'aquest document: repositori a `github.com/PauMB85/creativament` amb
+desplegament automàtic a GitHub Pages, pàgines legals, i una passada d'accessibilitat
+(`:focus-visible`, `prefers-reduced-motion`, contrastos WCAG AA verificats, estat dels filtres
+anunciat i àrees tàctils de 44px).
 
 ## Fitxers de referència
 

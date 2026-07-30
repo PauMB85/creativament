@@ -24,8 +24,9 @@ autoritatius viuen a [`src/styles/global.css`](../src/styles/global.css).
 
 - **Clar i càlid per defecte.** Fons de pàgina crema (`--cream #fffdf9`), superfícies blanques
   (`--surface`), franges de secció en crema (`--wash #fbf7f3`). No hi ha tema fosc.
-- **El rosa és sempre acció o accent** (`--pink #ef3d86`): botons primaris, enllaços, números,
-  subratllat de navegació, dia seleccionat. No s'usa mai per a text llarg.
+- **El rosa és sempre acció o accent**: botons primaris, enllaços, números, subratllat de
+  navegació, dia seleccionat. No s'usa mai per a text llarg. Quin dels tres rosades toca ho decideix
+  el contrast, no el gust — vegeu la regla a l'apartat Color.
 - **Els pastels són només decoració** (`--pastel-*`, `--blob-*`). Van darrere d'una icona, mai
   sota text.
 - **Formes orgàniques**: les taques de les activitats fan servir un `border-radius` irregular
@@ -40,12 +41,18 @@ autoritatius viuen a [`src/styles/global.css`](../src/styles/global.css).
 
 Paleta completa a `:root`. **Cap component escriu un color literal.**
 
-**Marca** — `--pink #ef3d86` (acció/accent) · `--pink-dark #d92972` (hover) · `--green #82ae62`
+**Marca** — `--pink #ef3d86` · `--pink-dark #d92972` · `--pink-darker #b01a55` · `--green #82ae62`
 (paraula destacada del titular) · `--yellow #f2b84d` i `--purple #7154bd` (declarats, encara sense ús)
 
+> **Regla de contrast del rosa.** `--pink` només arriba a 3.70:1 sobre blanc, per sota del 4.5:1 que
+> demana WCAG AA per a text petit. Per això es reparteix així:
+> `--pink` per a **decoració, subratllats, icones i text de 18px o més** (compleixen el 3:1 que els
+> pertoca); `--pink-dark` per a **tot el text petit i qualsevol fons que en porti** (botó primari,
+> xip actiu, dia seleccionat, eyebrow, CTA, enllaços); `--pink-darker` per als **hover** d'aquests.
+
 **Text** — `--ink #18345f` (blau tinta, text principal) · `--ink-soft #53627a` (secundari) ·
-`--text-on-brand #fff` (sobre rosa) · `--text-date #c99964` (dia de la setmana) ·
-`--text-tag #758a63` (etiqueta de categoria)
+`--text-on-brand #fff` (sobre rosa) · `--text-date #966c3c` (dia de la setmana) ·
+`--text-tag #647753` (etiqueta de categoria)
 
 **Superfícies i línies** — `--cream #fffdf9` · `--surface #fff` · `--wash #fbf7f3` ·
 `--pink-wash #fff0f6` (hover del botó outline) · `--line #eadfd9` · `--line-soft #f0e7e1`
@@ -102,9 +109,9 @@ dins del degradat radial del hero.
 | Component | Especificació |
 |---|---|
 | `.btn` | alçada mín. 48px, padding 0 22px, radi 6px, 12px/700 majúscules |
-| `.btn-primary` | fons rosa, text blanc; hover `--pink-dark` + `translateY(-1px)` |
-| `.btn-outline` | vora i text rosa; hover fons `--pink-wash` |
-| `.chip` (filtre) | padding 10px 18px, radi 5px, 12px majúscules; actiu/hover → fons rosa |
+| `.btn-primary` | fons `--pink-dark`, text blanc; hover `--pink-darker` + `translateY(-1px)` |
+| `.btn-outline` | vora i text `--pink-dark`; hover fons `--pink-wash` |
+| `.chip` (filtre) | padding 10px 18px, radi 5px, 12px majúscules; actiu/hover → fons `--pink-dark`; porta `aria-pressed` |
 | `.event-card` | radi 8px, padding 18px, alçada mín. 305px (275 a ≤650); hover puja 4px + `--shadow` |
 | `.event-art` | taca de 115px amb icona duotone de 52px en to profund, opacitat 0.82, posicionada fora del marge dret |
 | `.month-card` | radi 8px, 235px d'ample; **s'amaga per sota de 1050px** |
@@ -120,7 +127,8 @@ sistematitzats — vegeu Deute.
 
 ## Moviment
 
-- Transicions de **0.2s** (botons) i **0.25s** (targetes, subratllat de navegació).
+- Transicions de **0.2s** (botons) i **0.25s** (targetes, subratllat de navegació). Totes queden
+  anul·lades sota `prefers-reduced-motion: reduce`.
 - Hover de targeta: `translateY(-4px)` + ombra. Hover de botó primari: `translateY(-1px)`.
 - `scroll-behavior: smooth` global, perquè tota la navegació són àncores.
 - No hi ha animacions d'entrada ni paral·laxi.
@@ -170,12 +178,21 @@ La fletxa `→` de les crides a l'acció es manté com a **text**: allà és un 
 
 ## Accessibilitat
 
-Base ja implementada i que cal preservar: enllaç de salt al contingut, `aria-expanded` sincronitzat
-al menú mòbil, `aria-label` a navegació, controls de mes i xarxes socials, etiquetes `.sr-only` als
-camps sense etiqueta visible, i `aria-hidden` a les il·lustracions decoratives i a la graella de dies.
+Base implementada i que cal preservar:
 
-Pendent de comprovar: contrast de `--text-date` (#c99964) i `--text-tag` (#758a63) sobre blanc, i
-un estil de `:focus-visible` propi (ara depèn del navegador).
+- Enllaç de salt al contingut; `aria-expanded` sincronitzat al menú mòbil; `aria-label` a navegació,
+  controls de mes i xarxes socials; `.sr-only` als camps sense etiqueta visible; `aria-hidden` a les
+  il·lustracions decoratives i a la graella de dies.
+- **`:focus-visible` global** (contorn de 2px en `--pink-dark`, separat 3px). No el traieu: sense
+  ell, qui navega amb teclat no veu on és sobre els xips i els botons amb fons propi.
+- **`prefers-reduced-motion`**: desactiva el desplaçament suau i les transicions per a qui ho demana.
+- **Contrast WCAG AA verificat** a tota la paleta de text. Qualsevol color nou s'ha de comprovar
+  abans d'entrar: 4.5:1 per a text petit, 3:1 per a text de 18px+ i elements no textuals.
+- **Els xips de filtre exposen `aria-pressed`** i el resultat s'anuncia en una regió `aria-live`,
+  perquè filtrar amaga targetes sense cap senyal visible per a qui no hi veu.
+- **Àrees tàctils de 44px** a les fletxes de mes i a les icones socials, ampliades amb un
+  pseudo-element perquè la icona no es mogui. La separació de 22px entre icones socials és la que
+  evita que dues zones se solapin: si es redueix, tornen a solapar-se.
 
 ## Índex de fitxers
 

@@ -41,6 +41,7 @@ const blanks = Array.from({ length: currentMonth.leadingBlanks });
           <button
             class:list={['chip', { active: filter.value === 'all' }]}
             data-filter={filter.value}
+            aria-pressed={filter.value === 'all'}
           >
             {filter.label}
           </button>
@@ -87,7 +88,7 @@ const blanks = Array.from({ length: currentMonth.leadingBlanks });
                 </div>
                 <h3>{activity.title}</h3>
                 <p>{activity.audience}</p>
-                <time>{activity.time}</time>
+                <span class="time">{activity.time}</span>
                 <span class="tag">{activity.tag}</span>
               </article>
             );
@@ -95,6 +96,8 @@ const blanks = Array.from({ length: currentMonth.leadingBlanks });
         }
       </div>
     </div>
+
+    <p class="sr-only" role="status" aria-live="polite" id="filter-status"></p>
 
     <div class="center section-cta">
       <a class="btn btn-outline" href="#contacte">Veure tot el calendari →</a>
@@ -106,15 +109,32 @@ const blanks = Array.from({ length: currentMonth.leadingBlanks });
   const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
   const cards = document.querySelectorAll<HTMLElement>('.event-card');
 
+  const status = document.getElementById('filter-status');
+
   chips.forEach((chip) => {
     chip.addEventListener('click', () => {
-      chips.forEach((other) => other.classList.remove('active'));
+      chips.forEach((other) => {
+        other.classList.remove('active');
+        other.setAttribute('aria-pressed', 'false');
+      });
       chip.classList.add('active');
+      chip.setAttribute('aria-pressed', 'true');
 
       const filter = chip.dataset.filter;
+      let visible = 0;
       cards.forEach((card) => {
-        card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter);
+        const hidden = filter !== 'all' && card.dataset.category !== filter;
+        card.classList.toggle('hidden', hidden);
+        if (!hidden) visible++;
       });
+
+      // Filtrar amaga targetes sense cap senyal per a qui no ho veu.
+      if (status) {
+        status.textContent =
+          visible === 1
+            ? `Es mostra 1 activitat de ${cards.length}.`
+            : `Es mostren ${visible} activitats de ${cards.length}.`;
+      }
     });
   });
 </script>
@@ -145,8 +165,8 @@ const blanks = Array.from({ length: currentMonth.leadingBlanks });
 
   .chip.active,
   .chip:hover {
-    background: var(--pink);
-    border-color: var(--pink);
+    background: var(--pink-dark);
+    border-color: var(--pink-dark);
     color: var(--text-on-brand);
   }
 
@@ -178,6 +198,7 @@ const blanks = Array.from({ length: currentMonth.leadingBlanks });
   }
 
   .month-head button {
+    position: relative;
     border: 0;
     background: none;
     padding: 0;
@@ -185,6 +206,14 @@ const blanks = Array.from({ length: currentMonth.leadingBlanks });
     color: var(--ink);
     cursor: pointer;
     transition: 0.2s;
+  }
+
+  /* La icona fa 18px; el pseudo-element amplia la zona clicable fins a 44px
+     sense desplaçar-la ni alterar la disposició. */
+  .month-head button::before {
+    content: "";
+    position: absolute;
+    inset: -13px;
   }
 
   .month-head button:hover {
@@ -222,7 +251,7 @@ const blanks = Array.from({ length: currentMonth.leadingBlanks });
   }
 
   .days .selected {
-    background: var(--pink);
+    background: var(--pink-dark);
     color: var(--text-on-brand);
   }
 
@@ -233,7 +262,7 @@ const blanks = Array.from({ length: currentMonth.leadingBlanks });
   }
 
   .month-card > a {
-    color: var(--pink);
+    color: var(--pink-dark);
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
@@ -356,7 +385,7 @@ const blanks = Array.from({ length: currentMonth.leadingBlanks });
   }
 
   .event-card p,
-  .event-card time {
+  .event-card .time {
     display: block;
     color: var(--ink-soft);
     font-size: 12px;
