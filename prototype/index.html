@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Creativament: psicologia, creativitat i talent per a infants, adolescents, adults i famílies." />
+  <title>Creativament — Psicologia, creativitat i talent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Anar al contingut</a>
+
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="Creativament, inici">
+        <img src="assets/images/logo.png" alt="Creativament" />
+      </a>
+      <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false">Menú</button>
+      <nav class="main-nav" id="main-nav" aria-label="Navegació principal">
+        <a class="active" href="#inici">Inici</a>
+        <a href="#qui-som">Qui som</a>
+        <a href="#que-fem">Què fem</a>
+        <a href="#acompanyem">A qui acompanyem</a>
+        <a href="#metode">El mètode</a>
+        <a href="#calendari">Calendari</a>
+        <a href="#setmanal">Creativament setmanal</a>
+        <a href="#contacte">Contacte</a>
+      </nav>
+      <a class="btn btn-outline family-btn" href="#families">Espai famílies <span aria-hidden="true">♡</span></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="inici">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Psicologia · Creativitat · Talent</span>
+          <h1>Desenvolupem el <em>talent</em> a través de la psicologia i la <strong>creativitat.</strong></h1>
+          <p>Acompanyem infants, adolescents i adults a descobrir el seu potencial, comprendre's millor i créixer amb confiança, emoció i sentit.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#calendari">Descobreix els nostres programes</a>
+            <a class="btn btn-outline" href="#qui-som">Qui som</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="assets/images/hero-art.png" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <section class="values" id="metode">
+      <div class="container value-grid">
+        <article class="value-card"><div class="value-icon green">⌁</div><div><h3>Intervenció personalitzada</h3><p>Plans adaptats a cada persona i a cada etapa de la vida.</p></div></article>
+        <article class="value-card"><div class="value-icon peach">◎</div><div><h3>Basat en evidència</h3><p>Ens fonamentem en la ciència i en l'experiència professional.</p></div></article>
+        <article class="value-card"><div class="value-icon pink">♡</div><div><h3>Mirada integral</h3><p>Emocions, pensament, cos, relacions i creativitat.</p></div></article>
+        <article class="value-card"><div class="value-icon lilac">⌒</div><div><h3>Entorn segur i acollidor</h3><p>Espais on sentir-se bé, expressar-se i créixer.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section about" id="qui-som">
+      <div class="container narrow center">
+        <span class="eyebrow">Una manera diferent d'acompanyar</span>
+        <h2>Psicologia amb rigor, creativitat amb sentit.</h2>
+        <p>Creativament uneix intervenció psicològica, educació i experiències creatives per ajudar cada persona a entendre's, expressar-se i desenvolupar les seves fortaleses.</p>
+      </div>
+    </section>
+
+    <section class="section calendar-section" id="calendari">
+      <div class="container">
+        <div class="section-heading center">
+          <h2>Calendari d'activitats</h2>
+          <p>Tallers, grups i activitats per a totes les edats durant tot l'any.</p>
+        </div>
+
+        <div class="filters" role="group" aria-label="Filtrar activitats">
+          <button class="chip active" data-filter="all">Totes</button>
+          <button class="chip" data-filter="infants">Infants</button>
+          <button class="chip" data-filter="adolescents">Adolescents</button>
+          <button class="chip" data-filter="adults">Adults</button>
+          <button class="chip" data-filter="families">Famílies</button>
+          <button class="chip" data-filter="escoles">Formacions i escoles</button>
+        </div>
+
+        <div class="calendar-layout">
+          <aside class="month-card" aria-label="Calendari del mes">
+            <div class="month-head"><button aria-label="Mes anterior">‹</button><strong>Juny 2026</strong><button aria-label="Mes següent">›</button></div>
+            <div class="weekdays"><span>DL</span><span>DT</span><span>DC</span><span>DJ</span><span>DV</span><span>DS</span><span>DG</span></div>
+            <div class="days" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span>1</span><span>2</span>
+              <span>3</span><span class="selected">4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+              <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
+              <span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+              <span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+            </div>
+            <p>Les activitats es renoven cada mes. Consulta el calendari per no perdre't res.</p>
+            <a href="#contacte">Inscriu-te →</a>
+          </aside>
+
+          <div class="event-grid">
+            <article class="event-card" data-category="infants">
+              <div class="event-art blob blue"><span>🌿</span></div><div class="event-date"><small>Dimarts</small><strong>04</strong><span>Juny</span></div>
+              <h3>Taller d'art i emocions</h3><p>Infants (6–9 anys)</p><time>17:30 – 18:45</time><span class="tag">Infants</span>
+            </article>
+            <article class="event-card" data-category="infants">
+              <div class="event-art blob sky"><span>🎈</span></div><div class="event-date"><small>Dissabte</small><strong>08</strong><span>Juny</span></div>
+              <h3>Gestió emocional a través del joc</h3><p>Infants (8–11 anys)</p><time>10:30 – 12:00</time><span class="tag">Infants</span>
+            </article>
+            <article class="event-card" data-category="adolescents">
+              <div class="event-art blob yellow"><span>☂</span></div><div class="event-date"><small>Dijous</small><strong>13</strong><span>Juny</span></div>
+              <h3>Tècniques d'estudi amb creativitat</h3><p>Adolescents (12–16 anys)</p><time>17:00 – 18:30</time><span class="tag">Adolescents</span>
+            </article>
+            <article class="event-card" data-category="adults">
+              <div class="event-art blob blush"><span>🪶</span></div><div class="event-date"><small>Dissabte</small><strong>15</strong><span>Juny</span></div>
+              <h3>Artteràpia: expressar per sanar</h3><p>Adults</p><time>10:30 – 12:30</time><span class="tag">Adults</span>
+            </article>
+            <article class="event-card" data-category="infants">
+              <div class="event-art blob coral"><span>🧠</span></div><div class="event-date"><small>Dimarts</small><strong>18</strong><span>Juny</span></div>
+              <h3>Altes capacitats: grup d'enriquiment</h3><p>Infants (9–12 anys)</p><time>17:30 – 19:00</time><span class="tag">Infants</span>
+            </article>
+            <article class="event-card" data-category="families">
+              <div class="event-art blob pink"><span>🤝</span></div><div class="event-date"><small>Divendres</small><strong>21</strong><span>Juny</span></div>
+              <h3>Taller per a famílies: connexió i límits</h3><p>Famílies</p><time>17:30 – 19:00</time><span class="tag">Famílies</span>
+            </article>
+            <article class="event-card" data-category="families">
+              <div class="event-art blob mint"><span>🏠</span></div><div class="event-date"><small>Dissabte</small><strong>22</strong><span>Juny</span></div>
+              <h3>Comprendre l'ansietat infantil</h3><p>Famílies</p><time>10:30 – 12:30</time><span class="tag">Famílies</span>
+            </article>
+            <article class="event-card" data-category="escoles">
+              <div class="event-art blob cream"><span>✨</span></div><div class="event-date"><small>Dimecres</small><strong>26</strong><span>Juny</span></div>
+              <h3>Formació per a docents: creativitat a l'aula</h3><p>Docents i escoles</p><time>16:30 – 18:30</time><span class="tag">Formacions</span>
+            </article>
+          </div>
+        </div>
+        <div class="center section-cta"><a class="btn btn-outline" href="#contacte">Veure tot el calendari →</a></div>
+      </div>
+    </section>
+
+    <section class="section audience" id="acompanyem">
+      <div class="container">
+        <div class="section-heading center"><h2>A qui acompanyem</h2><p>Una mirada centrada en la persona, no en l'etiqueta.</p></div>
+        <div class="audience-grid">
+          <article><span>01</span><h3>Infants i adolescents</h3><p>Aprenentatge, emocions, autoestima, talent i habilitats socials.</p></article>
+          <article><span>02</span><h3>Adults</h3><p>Autoconeixement, creativitat, regulació emocional i benestar.</p></article>
+          <article><span>03</span><h3>Famílies</h3><p>Orientació, acompanyament i eines útils per al dia a dia.</p></article>
+          <article><span>04</span><h3>Escoles i professionals</h3><p>Formació, assessorament i programes amb base científica.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="resources-band" id="setmanal">
+      <div class="container resource-grid">
+        <article class="resource-card"><div class="resource-icon">📖</div><h3>Creativament setmanal</h3><p>Cada diumenge, una activitat creativa, material per imprimir i una idea per a xarxes socials.</p><img src="assets/images/weekly.png" alt="Materials creatius" /><a href="#contacte">Descobrir →</a></article>
+        <article class="resource-card"><div class="resource-icon">🌱</div><h3>Recursos i articles</h3><p>Articles, guies i recursos sobre psicologia, educació, creativitat i talent.</p><img src="assets/images/resources.png" alt="Llibre i tassa de cafè" /><a href="#contacte">Anar als recursos →</a></article>
+        <article class="resource-card newsletter"><div class="resource-icon">🗓</div><h3>Rep l'actualitat</h3><p>Tallers, recursos i propostes creatives directament al teu correu.</p><form><label class="sr-only" for="email">El teu correu electrònic</label><input id="email" type="email" placeholder="El teu correu electrònic" required /><button class="btn btn-primary" type="submit">Subscriure'm</button></form></article>
+        <article class="resource-card" id="families"><div class="resource-icon">💬</div><h3>Espai famílies</h3><p>Informació, seguiment i recursos exclusius per a famílies.</p><img src="assets/images/families.png" alt="Mans d'una família" /><a href="#contacte">Accedir →</a></article>
+      </div>
+    </section>
+
+    <section class="section contact" id="contacte">
+      <div class="container contact-grid">
+        <div><span class="eyebrow">Parlem?</span><h2>Explica'ns què necessites.</h2><p>T'ajudarem a trobar el programa, taller o tipus d'acompanyament més adequat.</p></div>
+        <form class="contact-form">
+          <label>Nom<input type="text" required /></label>
+          <label>Correu electrònic<input type="email" required /></label>
+          <label>Missatge<textarea rows="5" required></textarea></label>
+          <button class="btn btn-primary" type="submit">Enviar consulta</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <img class="footer-logo" src="assets/images/logo.png" alt="Creativament" />
+      <div class="footer-links"><a href="#">Avís legal</a><a href="#">Política de privacitat</a><a href="#">Política de cookies</a></div>
+      <div class="socials"><span>Segueix-nos</span><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="YouTube">▶</a><a href="mailto:hola@creativament.cat" aria-label="Correu">✉</a></div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

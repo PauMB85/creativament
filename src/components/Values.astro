@@ -1,0 +1,93 @@
+---
+import { values } from '../data/site';
+---
+
+<section class="values" id="metode">
+  <div class="container value-grid">
+    {
+      values.map((value) => (
+        <article class="value-card">
+          <div class:list={['value-icon', value.color]}>{value.icon}</div>
+          <div>
+            <h3>{value.title}</h3>
+            <p>{value.text}</p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .values {
+    background: linear-gradient(90deg, var(--wash), var(--cream), var(--wash));
+    border-block: 1px solid var(--line-soft);
+    padding: 30px 0;
+  }
+
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+
+  .value-card {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .value-card h3 {
+    font-family: var(--serif);
+    font-size: 18px;
+    margin: 3px 0 5px;
+  }
+
+  .value-card p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .value-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    flex: none;
+  }
+
+  .green {
+    background: var(--pastel-green);
+  }
+
+  .peach {
+    background: var(--pastel-peach);
+  }
+
+  .pink {
+    background: var(--pastel-pink);
+  }
+
+  .lilac {
+    background: var(--pastel-lilac);
+  }
+
+  @media (max-width: 1050px) {
+    .value-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 650px) {
+    .value-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .value-card {
+      padding: 4px 0;
+    }
+  }
+</style>

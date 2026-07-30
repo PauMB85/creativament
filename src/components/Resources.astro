@@ -1,0 +1,143 @@
+---
+import BookOpen from '../icons/book-open-duotone.svg';
+import Plant from '../icons/plant-duotone.svg';
+import CalendarBlank from '../icons/calendar-blank-duotone.svg';
+import ChatCircleDots from '../icons/chat-circle-dots-duotone.svg';
+---
+
+<section class="resources-band" id="setmanal">
+  <div class="container resource-grid">
+    <article class="resource-card">
+      <h3><BookOpen aria-hidden="true" />Creativament setmanal</h3>
+      <p>
+        Cada diumenge, una activitat creativa, material per imprimir i una idea per a xarxes socials.
+      </p>
+      <img src="/assets/images/weekly.png" alt="Materials creatius" />
+      <a href="#contacte">Descobrir →</a>
+    </article>
+
+    <article class="resource-card">
+      <h3><Plant aria-hidden="true" />Recursos i articles</h3>
+      <p>Articles, guies i recursos sobre psicologia, educació, creativitat i talent.</p>
+      <img src="/assets/images/resources.png" alt="Llibre i tassa de cafè" />
+      <a href="#contacte">Anar als recursos →</a>
+    </article>
+
+    <article class="resource-card newsletter">
+      <h3><CalendarBlank aria-hidden="true" />Rep l'actualitat</h3>
+      <p>Tallers, recursos i propostes creatives directament al teu correu.</p>
+      <form data-demo-form>
+        <label class="sr-only" for="email">El teu correu electrònic</label>
+        <input id="email" type="email" placeholder="El teu correu electrònic" required />
+        <button class="btn btn-primary" type="submit">Subscriure'm</button>
+      </form>
+    </article>
+
+    <article class="resource-card" id="families">
+      <h3><ChatCircleDots aria-hidden="true" />Espai famílies</h3>
+      <p>Informació, seguiment i recursos exclusius per a famílies.</p>
+      <img src="/assets/images/families.png" alt="Mans d'una família" />
+      <a href="#contacte">Accedir →</a>
+    </article>
+  </div>
+</section>
+
+<style>
+  .resources-band {
+    padding: 62px 0;
+    background: linear-gradient(var(--wash), var(--surface));
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .resource-card {
+    padding: 0 24px;
+    border-right: 1px solid var(--line);
+  }
+
+  .resource-card:last-child {
+    border-right: 0;
+  }
+
+  /* `line-height` i mida d'icona coincideixen (26px) perquè la icona quedi
+     alineada amb la primera línia quan el títol ocupa dues. */
+  .resource-card h3 {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 0 0 10px;
+  }
+
+  .resource-card h3 svg {
+    width: 26px;
+    height: 26px;
+    flex: none;
+    fill: currentColor;
+    color: var(--pink);
+  }
+
+  .resource-card p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    min-height: 66px;
+  }
+
+  .resource-card img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin: 12px 0;
+  }
+
+  .resource-card > a {
+    color: var(--pink);
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .newsletter form {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .newsletter input {
+    width: 100%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 6px;
+    padding: 13px 14px;
+    color: var(--ink);
+  }
+
+  @media (max-width: 1050px) {
+    .resource-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .resource-card {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+      padding: 24px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .resource-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .resource-card {
+      padding: 24px 0;
+    }
+  }
+</style>

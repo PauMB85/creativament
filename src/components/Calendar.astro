@@ -1,0 +1,411 @@
+---
+import { activities, activityFilters, currentMonth } from '../data/activities';
+import CaretLeft from '../icons/caret-left.svg';
+import CaretRight from '../icons/caret-right.svg';
+import Plant from '../icons/plant-duotone.svg';
+import Balloon from '../icons/balloon-duotone.svg';
+import Umbrella from '../icons/umbrella-duotone.svg';
+import Feather from '../icons/feather-duotone.svg';
+import Brain from '../icons/brain-duotone.svg';
+import Handshake from '../icons/handshake-duotone.svg';
+import House from '../icons/house-duotone.svg';
+import Sparkle from '../icons/sparkle-duotone.svg';
+import type { ActivityIcon } from '../data/activities';
+
+/** Registre d'icones: cada valor d'`ActivityIcon` ha de tenir-hi entrada. */
+const icons: Record<ActivityIcon, typeof Plant> = {
+  plant: Plant,
+  balloon: Balloon,
+  umbrella: Umbrella,
+  feather: Feather,
+  brain: Brain,
+  handshake: Handshake,
+  house: House,
+  sparkle: Sparkle,
+};
+
+const days = Array.from({ length: currentMonth.totalDays }, (_, i) => i + 1);
+const blanks = Array.from({ length: currentMonth.leadingBlanks });
+---
+
+<section class="section calendar-section" id="calendari">
+  <div class="container">
+    <div class="section-heading center">
+      <h2>Calendari d'activitats</h2>
+      <p>Tallers, grups i activitats per a totes les edats durant tot l'any.</p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filtrar activitats">
+      {
+        activityFilters.map((filter) => (
+          <button
+            class:list={['chip', { active: filter.value === 'all' }]}
+            data-filter={filter.value}
+          >
+            {filter.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="calendar-layout">
+      <aside class="month-card" aria-label="Calendari del mes">
+        <div class="month-head">
+          <button aria-label="Mes anterior"><CaretLeft aria-hidden="true" /></button>
+          <strong>{currentMonth.label}</strong>
+          <button aria-label="Mes següent"><CaretRight aria-hidden="true" /></button>
+        </div>
+        <div class="weekdays">
+          <span>DL</span><span>DT</span><span>DC</span><span>DJ</span><span>DV</span><span>DS</span>
+          <span>DG</span>
+        </div>
+        <div class="days" aria-hidden="true">
+          {blanks.map(() => <span />)}
+          {
+            days.map((day) => (
+              <span class:list={[{ selected: day === currentMonth.selectedDay }]}>{day}</span>
+            ))
+          }
+        </div>
+        <p>Les activitats es renoven cada mes. Consulta el calendari per no perdre't res.</p>
+        <a href="#contacte">Inscriu-te →</a>
+      </aside>
+
+      <div class="event-grid">
+        {
+          activities.map((activity) => {
+            const Icon = icons[activity.icon];
+            return (
+              <article class="event-card" data-category={activity.category}>
+                <div class:list={['event-art', 'blob', activity.blob]}>
+                  <Icon aria-hidden="true" />
+                </div>
+                <div class="event-date">
+                  <small>{activity.weekday}</small>
+                  <strong>{activity.day}</strong>
+                  <span>{activity.month}</span>
+                </div>
+                <h3>{activity.title}</h3>
+                <p>{activity.audience}</p>
+                <time>{activity.time}</time>
+                <span class="tag">{activity.tag}</span>
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <div class="center section-cta">
+      <a class="btn btn-outline" href="#contacte">Veure tot el calendari →</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const cards = document.querySelectorAll<HTMLElement>('.event-card');
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chips.forEach((other) => other.classList.remove('active'));
+      chip.classList.add('active');
+
+      const filter = chip.dataset.filter;
+      cards.forEach((card) => {
+        card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter);
+      });
+    });
+  });
+</script>
+
+<style>
+  .calendar-section {
+    background: var(--surface);
+  }
+
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 34px 0;
+  }
+
+  .chip {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    padding: 10px 18px;
+    border-radius: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .chip.active,
+  .chip:hover {
+    background: var(--pink);
+    border-color: var(--pink);
+    color: var(--text-on-brand);
+  }
+
+  .calendar-layout {
+    display: grid;
+    grid-template-columns: 235px 1fr;
+    gap: 14px;
+  }
+
+  .month-card,
+  .event-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+
+  .month-card {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .month-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+
+  .month-head button {
+    border: 0;
+    background: none;
+    padding: 0;
+    display: flex;
+    color: var(--ink);
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .month-head button:hover {
+    color: var(--pink);
+  }
+
+  .month-head svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .weekdays,
+  .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 7px;
+  }
+
+  .weekdays {
+    font-size: 10px;
+    margin: 20px 0 8px;
+  }
+
+  .days {
+    font-size: 12px;
+  }
+
+  .days span {
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+  }
+
+  .days .selected {
+    background: var(--pink);
+    color: var(--text-on-brand);
+  }
+
+  .month-card p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: auto;
+  }
+
+  .month-card > a {
+    color: var(--pink);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .event-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .event-card {
+    position: relative;
+    padding: 18px;
+    min-height: 305px;
+    overflow: hidden;
+    transition: 0.25s;
+  }
+
+  .event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+  }
+
+  .event-card.hidden {
+    display: none;
+  }
+
+  .event-art {
+    position: absolute;
+    right: -10px;
+    top: 5px;
+    width: 115px;
+    height: 115px;
+    display: grid;
+    place-items: center;
+    opacity: 0.82;
+  }
+
+  /* La icona hereta el to profund que fixa cada classe de taca. */
+  .event-art svg {
+    width: 52px;
+    height: 52px;
+    fill: currentColor;
+  }
+
+  .blob {
+    border-radius: 48% 52% 63% 37% / 41% 36% 64% 59%;
+  }
+
+  .blue {
+    background: var(--blob-blue);
+    color: var(--blob-blue-deep);
+  }
+
+  .sky {
+    background: var(--blob-sky);
+    color: var(--blob-sky-deep);
+  }
+
+  .yellow {
+    background: var(--blob-yellow);
+    color: var(--blob-yellow-deep);
+  }
+
+  .blush {
+    background: var(--blob-blush);
+    color: var(--blob-blush-deep);
+  }
+
+  .coral {
+    background: var(--blob-coral);
+    color: var(--blob-coral-deep);
+  }
+
+  .pink {
+    background: var(--pastel-pink);
+    color: var(--pastel-pink-deep);
+  }
+
+  .mint {
+    background: var(--blob-mint);
+    color: var(--blob-mint-deep);
+  }
+
+  .cream {
+    background: var(--blob-cream);
+    color: var(--blob-cream-deep);
+  }
+
+  .event-date {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .event-date small {
+    font-size: 10px;
+    color: var(--text-date);
+  }
+
+  .event-date strong {
+    font-family: var(--serif);
+    font-size: 34px;
+    font-weight: 500;
+    margin: 5px 0;
+  }
+
+  .event-date span {
+    font-size: 11px;
+  }
+
+  .event-card h3 {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.2;
+    margin: 54px 0 5px;
+    max-width: 85%;
+  }
+
+  .event-card p,
+  .event-card time {
+    display: block;
+    color: var(--ink-soft);
+    font-size: 12px;
+  }
+
+  .tag {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--text-tag);
+  }
+
+  .section-cta {
+    margin-top: 30px;
+  }
+
+  @media (max-width: 1050px) {
+    .calendar-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .month-card {
+      display: none;
+    }
+
+    .event-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 650px) {
+    .event-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .filters {
+      justify-content: flex-start;
+      overflow: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 8px;
+    }
+
+    .chip {
+      white-space: nowrap;
+    }
+
+    .event-card {
+      min-height: 275px;
+    }
+  }
+</style>

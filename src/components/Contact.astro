@@ -1,0 +1,79 @@
+<section class="section contact" id="contacte">
+  <div class="container contact-grid">
+    <div>
+      <span class="eyebrow">Parlem?</span>
+      <h2>Explica'ns què necessites.</h2>
+      <p>T'ajudarem a trobar el programa, taller o tipus d'acompanyament més adequat.</p>
+    </div>
+    <form class="contact-form" data-demo-form>
+      <label>
+        Nom
+        <input type="text" required />
+      </label>
+      <label>
+        Correu electrònic
+        <input type="email" required />
+      </label>
+      <label>
+        Missatge
+        <textarea rows="5" required></textarea>
+      </label>
+      <button class="btn btn-primary" type="submit">Enviar consulta</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: var(--surface);
+  }
+
+  .contact p {
+    color: var(--ink-soft);
+    font-size: 18px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-form {
+    display: grid;
+    gap: 16px;
+  }
+
+  .contact-form label {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    display: block;
+    margin-top: 7px;
+    width: 100%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 6px;
+    padding: 13px 14px;
+    color: var(--ink);
+  }
+
+  .contact-form textarea {
+    resize: vertical;
+  }
+
+  .contact-form .btn {
+    justify-self: start;
+  }
+
+  @media (max-width: 650px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+</style>

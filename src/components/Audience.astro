@@ -1,0 +1,72 @@
+---
+import { audiences } from '../data/site';
+---
+
+<section class="section audience" id="acompanyem">
+  <div class="container">
+    <div class="section-heading center">
+      <h2>A qui acompanyem</h2>
+      <p>Una mirada centrada en la persona, no en l'etiqueta.</p>
+    </div>
+    <div class="audience-grid">
+      {
+        audiences.map((item) => (
+          <article>
+            <span>{item.number}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .audience {
+    background: var(--wash);
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 38px;
+  }
+
+  .audience-grid article {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 28px;
+    border-radius: var(--radius);
+  }
+
+  .audience-grid span {
+    color: var(--pink);
+    font-family: var(--serif);
+    font-size: 28px;
+  }
+
+  .audience-grid h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    margin: 10px 0;
+  }
+
+  .audience-grid p {
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+
+  @media (max-width: 1050px) {
+    .audience-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 650px) {
+    .audience-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
