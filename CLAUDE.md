@@ -45,7 +45,9 @@ Activity icons live inside the organic blob and take their color from it: each b
 
 The abstract glyphs in `Values.astro` (`⌁ ◎ ♡ ⌒`) and the `♡` in the header button are deliberately still Unicode — a pending design decision, not leftover emoji to "upgrade".
 
-**Images are plain `<img>` with absolute `/assets/images/...` paths from `public/`.** Astro's `<Image>` / asset pipeline is not in use; introducing it means moving files into `src/assets/`.
+**Images from `public/` must go through `asset()`** ([src/lib/asset.ts](src/lib/asset.ts)), never a hand-written `src="/assets/..."`. The GitHub Pages preview is served from `/creativament/`, and Astro does not rewrite absolute paths in markup — a literal path works locally and 404s on Pages. `base` is switched by the `GITHUB_PAGES=true` env var in [astro.config.mjs](astro.config.mjs), set only by the deploy workflow, so the production-domain build is unaffected. Reproduce the Pages build with `GITHUB_PAGES=true npm run build`.
+
+**Images are plain `<img>` tags from `public/`.** Astro's `<Image>` / asset pipeline is not in use; introducing it means moving files into `src/assets/`.
 
 ## Directories that are not part of the build
 

@@ -3,6 +3,7 @@ import BookOpen from '../icons/book-open-duotone.svg';
 import Plant from '../icons/plant-duotone.svg';
 import CalendarBlank from '../icons/calendar-blank-duotone.svg';
 import ChatCircleDots from '../icons/chat-circle-dots-duotone.svg';
+import { asset } from '../lib/asset';
 ---
 
 <section class="resources-band" id="setmanal">
@@ -12,14 +13,14 @@ import ChatCircleDots from '../icons/chat-circle-dots-duotone.svg';
       <p>
         Cada diumenge, una activitat creativa, material per imprimir i una idea per a xarxes socials.
       </p>
-      <img src="/assets/images/weekly.png" alt="Materials creatius" />
+      <img src={asset('assets/images/weekly.png')} alt="Materials creatius" />
       <a href="#contacte">Descobrir →</a>
     </article>
 
     <article class="resource-card">
       <h3><Plant aria-hidden="true" />Recursos i articles</h3>
       <p>Articles, guies i recursos sobre psicologia, educació, creativitat i talent.</p>
-      <img src="/assets/images/resources.png" alt="Llibre i tassa de cafè" />
+      <img src={asset('assets/images/resources.png')} alt="Llibre i tassa de cafè" />
       <a href="#contacte">Anar als recursos →</a>
     </article>
 
@@ -36,7 +37,7 @@ import ChatCircleDots from '../icons/chat-circle-dots-duotone.svg';
     <article class="resource-card" id="families">
       <h3><ChatCircleDots aria-hidden="true" />Espai famílies</h3>
       <p>Informació, seguiment i recursos exclusius per a famílies.</p>
-      <img src="/assets/images/families.png" alt="Mans d'una família" />
+      <img src={asset('assets/images/families.png')} alt="Mans d'una família" />
       <a href="#contacte">Accedir →</a>
     </article>
   </div>

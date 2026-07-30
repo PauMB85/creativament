@@ -72,6 +72,34 @@ comparar visualment qualsevol canvi. La migració a Astro es va verificar píxel
 les desviacions intencionades des de llavors estan llistades a
 [`CLAUDE.md`](CLAUDE.md#directories-that-are-not-part-of-the-build).
 
+## Desplegament
+
+Cada `push` a `main` publica una previsualització a **GitHub Pages** mitjançant
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
+
+<https://paumb85.github.io/creativament/>
+
+GitHub Pages serveix el lloc dins d'un subdirectori, i Astro no reescriu les rutes absolutes del
+marcatge. Per això el workflow construeix amb `GITHUB_PAGES=true`, que activa `base: '/creativament'`
+a `astro.config.mjs`, i **totes les imatges de `public/` s'han de referenciar amb l'ajudant
+`asset()`** de `src/lib/asset.ts`:
+
+```astro
+import { asset } from '../lib/asset';
+<img src={asset('assets/images/logo.png')} alt="…" />
+```
+
+Un `src="/assets/…"` escrit a mà funcionarà en local i donarà 404 a Pages.
+
+Per reproduir el build de Pages en local:
+
+```bash
+GITHUB_PAGES=true npm run build && GITHUB_PAGES=true npm run preview
+```
+
+El build per al domini definitiu (`npm run build` sense la variable) segueix servint-se des de
+l'arrel i no queda afectat.
+
 ## Documentació
 
 - [**Sistema de disseny**](docs/design-system.md) — paleta, tipografia, espaiat, especificació de

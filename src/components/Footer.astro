@@ -3,11 +3,12 @@ import InstagramLogo from '../icons/instagram-logo.svg';
 import FacebookLogo from '../icons/facebook-logo.svg';
 import YoutubeLogo from '../icons/youtube-logo.svg';
 import Envelope from '../icons/envelope.svg';
+import { asset } from '../lib/asset';
 ---
 
 <footer class="site-footer">
   <div class="container footer-grid">
-    <img class="footer-logo" src="/assets/images/logo.png" alt="Creativament" />
+    <img class="footer-logo" src={asset('assets/images/logo.png')} alt="Creativament" />
     <div class="footer-links">
       <a href="#">Avís legal</a>
       <a href="#">Política de privacitat</a>

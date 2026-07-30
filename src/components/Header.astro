@@ -2,12 +2,13 @@
 import { navLinks } from '../data/site';
 
 const activeHref = '#inici';
+import { asset } from '../lib/asset';
 ---
 
 <header class="site-header" id="top">
   <div class="container nav-wrap">
     <a class="brand" href="#top" aria-label="Creativament, inici">
-      <img src="/assets/images/logo.png" alt="Creativament" />
+      <img src={asset('assets/images/logo.png')} alt="Creativament" />
     </a>
     <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false">Menú</button>
     <nav class="main-nav" id="main-nav" aria-label="Navegació principal">
