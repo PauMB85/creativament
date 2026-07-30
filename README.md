@@ -100,6 +100,13 @@ GITHUB_PAGES=true npm run build && GITHUB_PAGES=true npm run preview
 El build per al domini definitiu (`npm run build` sense la variable) segueix servint-se des de
 l'arrel i no queda afectat.
 
+La previsualització també porta `<meta name="robots" content="noindex, nofollow">`, perquè és pública
+i no volem que un prototip amb dades de demostració s'indexi abans que existeixi la web real. El
+build del domini definitiu no la porta.
+
+> **Primera vegada:** cal activar Pages una sola vegada a **Settings → Pages → Source: GitHub
+> Actions**. El workflow no ho pot fer sol (el token d'Actions no té permís per activar-ho).
+
 ## Documentació
 
 - [**Sistema de disseny**](docs/design-system.md) — paleta, tipografia, espaiat, especificació de

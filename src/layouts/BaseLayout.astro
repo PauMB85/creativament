@@ -9,6 +9,13 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+
+/**
+ * La previsualització de GitHub Pages és pública. Sense això, un prototip amb
+ * dades de demostració podria indexar-se abans que existeixi la web real.
+ * El build del domini definitiu no porta l'etiqueta.
+ */
+const isPreview = process.env.GITHUB_PAGES === 'true';
 ---
 
 <!doctype html>
@@ -17,6 +24,7 @@ const { title, description } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {isPreview && <meta name="robots" content="noindex, nofollow" />}
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
