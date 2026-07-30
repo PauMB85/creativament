@@ -2,25 +2,31 @@
 import { navLinks } from '../data/site';
 
 const activeHref = '#inici';
-import { asset } from '../lib/asset';
+
+/**
+ * Les entrades del menú són àncores de la portada. Cal prefixar-les amb la ruta
+ * de l'inici perquè també funcionin des de les pàgines legals.
+ */
+const home = route('');
+import { asset, route } from '../lib/asset';
 ---
 
 <header class="site-header" id="top">
   <div class="container nav-wrap">
-    <a class="brand" href="#top" aria-label="Creativament, inici">
+    <a class="brand" href={`${home}#top`} aria-label="Creativament, inici">
       <img src={asset('assets/images/logo.png')} alt="Creativament" />
     </a>
     <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false">Menú</button>
     <nav class="main-nav" id="main-nav" aria-label="Navegació principal">
       {
         navLinks.map((link) => (
-          <a class:list={[{ active: link.href === activeHref }]} href={link.href}>
+          <a class:list={[{ active: link.href === activeHref }]} href={`${home}${link.href}`}>
             {link.label}
           </a>
         ))
       }
     </nav>
-    <a class="btn btn-outline family-btn" href="#families">
+    <a class="btn btn-outline family-btn" href={`${home}#families`}>
       Espai famílies <span aria-hidden="true">♡</span>
     </a>
   </div>

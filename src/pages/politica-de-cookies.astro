@@ -1,0 +1,65 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { legalEntity } from '../data/legal';
+import { route } from '../lib/asset';
+---
+
+<LegalLayout
+  title="Política de cookies"
+  description="Aquest lloc web no fa servir cookies ni cap altra tecnologia de seguiment."
+  intro="Aquest lloc web no fa servir cookies. Ni pròpies, ni de tercers, ni analítiques, ni publicitàries."
+>
+  <h2>1. Què són les cookies</h2>
+  <p>
+    Una cookie és un fitxer petit que un lloc web desa al navegador de qui el visita, i que permet
+    recordar informació entre visites: preferències, sessió iniciada, pàgines consultades o hàbits de
+    navegació.
+  </p>
+
+  <h2>2. Cookies que utilitza aquest lloc</h2>
+  <p><strong>Cap.</strong> En concret:</p>
+  <ul>
+    <li>No s'instal·len cookies pròpies.</li>
+    <li>No s'incorporen cookies de tercers.</li>
+    <li>
+      No s'utilitza cap eina d'analítica (ni Google Analytics ni equivalents), ni píxels de
+      seguiment, ni xarxes publicitàries.
+    </li>
+    <li>
+      No es fa servir emmagatzematge local del navegador (<code>localStorage</code> ni
+      <code>sessionStorage</code>).
+    </li>
+    <li>No s'elaboren perfils ni es fa seguiment entre llocs web.</li>
+  </ul>
+  <p>
+    Per això aquest lloc <strong>no mostra cap avís de cookies</strong>: la normativa només n'exigeix
+    un quan s'instal·len cookies que no siguin estrictament necessàries, i aquí no se n'instal·la cap.
+  </p>
+
+  <h2>3. Connexions a tercers</h2>
+  <p>
+    Encara que no hi hagi cookies, el navegador sí que fa una connexió a un servei extern: les
+    tipografies es carreguen des de <strong>Google Fonts</strong> (<code>fonts.googleapis.com</code> i
+    <code>fonts.gstatic.com</code>). Aquesta connexió no instal·la cookies, però comunica a Google
+    l'adreça IP del visitant, tal com s'explica a la <a href={route('politica-de-privacitat/')}
+      >política de privacitat</a
+    >.
+  </p>
+
+  <h2>4. Com desactivar les cookies</h2>
+  <p>
+    Tot i que aquí no calgui, qualsevol navegador permet bloquejar o eliminar cookies des de la seva
+    configuració de privacitat. Consulteu l'ajuda de Chrome, Firefox, Safari o Edge segons el
+    navegador que feu servir.
+  </p>
+
+  <h2>5. Canvis en aquesta política</h2>
+  <p>
+    Si en el futur s'incorpora qualsevol eina que instal·li cookies —analítica, vídeos incrustats,
+    mapes o widgets de xarxes socials— aquesta política s'actualitzarà i s'habilitarà el sistema de
+    consentiment previ que exigeixi la normativa.
+  </p>
+  <p>
+    Per a qualsevol dubte: <a href={`mailto:${legalEntity.email}`}>{legalEntity.email}</a>.
+  </p>
+</LegalLayout>

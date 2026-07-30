@@ -45,6 +45,10 @@ Activity icons live inside the organic blob and take their color from it: each b
 
 The abstract glyphs in `Values.astro` (`⌁ ◎ ♡ ⌒`) and the `♡` in the header button are deliberately still Unicode — a pending design decision, not leftover emoji to "upgrade".
 
+**Legal pages.** `/avis-legal/`, `/politica-de-privacitat/`, `/politica-de-cookies/` share [LegalLayout.astro](src/layouts/LegalLayout.astro). Every identifying detail comes from [src/data/legal.ts](src/data/legal.ts) — never hard-code a name, NIF or address into the prose. Unfilled fields render as a pink `[PENDENT: …]` via [LegalValue.astro](src/components/LegalValue.astro), deliberately visible so nothing ships blank. The privacy page branches on `dataProcessing.formsActive`: flip it when the forms actually submit, and fill `processors` / `retention` at the same time.
+
+**Internal links must go through `route()`**, exactly like `asset()` — the same base-path problem applies to hrefs. Header nav entries are home-page anchors, so they are prefixed with `route('')` to keep working from the legal pages.
+
 **Images from `public/` must go through `asset()`** ([src/lib/asset.ts](src/lib/asset.ts)), never a hand-written `src="/assets/..."`. The GitHub Pages preview is served from `/creativament/`, and Astro does not rewrite absolute paths in markup — a literal path works locally and 404s on Pages. `base` is switched by the `GITHUB_PAGES=true` env var in [astro.config.mjs](astro.config.mjs), set only by the deploy workflow, so the production-domain build is unaffected. Reproduce the Pages build with `GITHUB_PAGES=true npm run build`.
 
 **Images are plain `<img>` tags from `public/`.** Astro's `<Image>` / asset pipeline is not in use; introducing it means moving files into `src/assets/`.

@@ -1,0 +1,121 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { lastUpdated, pending } from '../data/legal';
+
+interface Props {
+  title: string;
+  description: string;
+  intro: string;
+}
+
+const { title, description, intro } = Astro.props;
+---
+
+<BaseLayout title={`${title} — Creativament`} description={description}>
+  <section class="section legal">
+    <div class="container narrow">
+      <span class="eyebrow">Informació legal</span>
+      <h1>{title}</h1>
+      <p class="lead">{intro}</p>
+
+      <div class="legal-body">
+        <slot />
+      </div>
+
+      <p class="updated">Última actualització: {pending(lastUpdated, 'data')}</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal {
+    background: var(--surface);
+  }
+
+  .legal h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    line-height: 1.08;
+    font-size: 44px;
+    margin: 12px 0 18px;
+  }
+
+  .lead {
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin-bottom: 42px;
+  }
+
+  .legal-body :global(h2) {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 24px;
+    margin: 42px 0 12px;
+  }
+
+  .legal-body :global(h3) {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 26px 0 8px;
+  }
+
+  .legal-body :global(p),
+  .legal-body :global(li) {
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+
+  .legal-body :global(ul) {
+    padding-left: 20px;
+  }
+
+  .legal-body :global(li) {
+    margin-bottom: 8px;
+  }
+
+  .legal-body :global(a) {
+    color: var(--pink);
+    text-decoration: underline;
+  }
+
+  .legal-body :global(dl) {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 10px 24px;
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .legal-body :global(dt) {
+    font-weight: 600;
+  }
+
+  .legal-body :global(dd) {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  .updated {
+    margin-top: 52px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 650px) {
+    .legal h1 {
+      font-size: 32px;
+    }
+
+    .legal-body :global(dl) {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+
+    .legal-body :global(dd) {
+      margin-bottom: 12px;
+    }
+  }
+</style>

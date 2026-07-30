@@ -1,0 +1,120 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import LegalValue from '../components/LegalValue.astro';
+import { legalEntity } from '../data/legal';
+---
+
+<LegalLayout
+  title="Avís legal"
+  description="Dades identificatives del titular del lloc web de Creativament i condicions d'ús."
+  intro="Dades identificatives del titular d'aquest lloc web i condicions que en regulen l'ús."
+>
+  <h2>1. Titular del lloc web</h2>
+  <p>
+    En compliment de l'article 10 de la Llei 34/2002, de serveis de la societat de la informació i de
+    comerç electrònic (LSSI-CE), es fan públiques les dades següents:
+  </p>
+  <dl>
+    <dt>Titular</dt>
+    <dd><LegalValue value={legalEntity.name} label="raó social o nom i cognoms" /></dd>
+
+    <dt>NIF / CIF</dt>
+    <dd><LegalValue value={legalEntity.taxId} label="NIF o CIF" /></dd>
+
+    <dt>Domicili</dt>
+    <dd><LegalValue value={legalEntity.address} label="domicili complet" /></dd>
+
+    <dt>Correu electrònic</dt>
+    <dd><a href={`mailto:${legalEntity.email}`}>{legalEntity.email}</a></dd>
+
+    {legalEntity.phone && <dt>Telèfon</dt>}
+    {legalEntity.phone && <dd>{legalEntity.phone}</dd>}
+
+    {legalEntity.registry && <dt>Dades registrals</dt>}
+    {legalEntity.registry && <dd>{legalEntity.registry}</dd>}
+  </dl>
+
+  <h2>2. Exercici professional</h2>
+  <p>
+    La psicologia és una professió regulada. D'acord amb l'article 10.1.f de la LSSI-CE, es fan
+    constar les dades col·legials:
+  </p>
+  <dl>
+    <dt>Col·legi professional</dt>
+    <dd><LegalValue value={legalEntity.professionalBody} label="col·legi professional" /></dd>
+
+    <dt>Número de col·legiat/da</dt>
+    <dd><LegalValue value={legalEntity.membershipNumber} label="número de col·legiat" /></dd>
+
+    <dt>Títol acadèmic</dt>
+    <dd><LegalValue value={legalEntity.academicDegree} label="títol acadèmic" /></dd>
+
+    <dt>Estat d'expedició</dt>
+    <dd>Espanya</dd>
+  </dl>
+  <p>
+    L'activitat professional se subjecta al codi deontològic del col·legi corresponent i a la
+    normativa que regula l'exercici de la psicologia a Espanya.
+  </p>
+
+  <h2>3. Objecte</h2>
+  <p>
+    Aquest lloc web té una finalitat informativa: donar a conèixer els serveis, tallers i activitats
+    de Creativament. La navegació no requereix registre ni la creació de cap compte d'usuari.
+  </p>
+
+  <h2>4. Condicions d'ús</h2>
+  <p>
+    Qui accedeix a aquest lloc web n'assumeix la condició d'usuari i es compromet a fer-ne un ús
+    conforme a la llei, a aquest avís legal i a la bona fe. En particular, es compromet a no:
+  </p>
+  <ul>
+    <li>Fer un ús del lloc web amb finalitats il·lícites o lesives per a tercers.</li>
+    <li>Introduir-hi programes, virus o qualsevol element que en pugui alterar el funcionament.</li>
+    <li>Intentar accedir a àrees restringides dels sistemes del titular o de tercers.</li>
+  </ul>
+
+  <h2>5. Propietat intel·lectual i industrial</h2>
+  <p>
+    Els textos, imatges, il·lustracions, marques, logotips, disseny i codi d'aquest lloc web són
+    titularitat de Creativament o de tercers que n'han cedit l'ús, i estan protegits per la normativa
+    de propietat intel·lectual i industrial. No se'n permet la reproducció, distribució, comunicació
+    pública ni transformació sense autorització expressa i per escrit del titular.
+  </p>
+  <p>
+    Les icones d'interfície provenen del conjunt <a
+      href="https://phosphoricons.com"
+      rel="noopener">Phosphor Icons</a
+    >, sota llicència MIT. Les tipografies són DM Sans i Playfair Display, sota SIL Open Font License.
+  </p>
+
+  <h2>6. Responsabilitat</h2>
+  <p>
+    El titular treballa per mantenir la informació d'aquest lloc actualitzada i lliure d'errors, però
+    no en garanteix l'exhaustivitat ni l'exactitud permanent, i es reserva el dret de modificar-ne el
+    contingut sense avís previ.
+  </p>
+  <p>
+    <strong
+      >La informació publicada té caràcter divulgatiu i no substitueix una consulta professional.</strong
+    > Cap contingut d'aquest lloc constitueix un diagnòstic, un tractament ni una recomanació clínica
+    individualitzada.
+  </p>
+  <p>
+    El titular no es responsabilitza de les interrupcions del servei per causes alienes al seu
+    control, ni dels danys derivats d'un ús inadequat del lloc web.
+  </p>
+
+  <h2>7. Enllaços a altres llocs</h2>
+  <p>
+    Aquest lloc pot contenir enllaços a webs de tercers. El titular no en controla els continguts ni
+    n'assumeix cap responsabilitat; l'accés es fa sota la responsabilitat de qui navega.
+  </p>
+
+  <h2>8. Legislació aplicable i jurisdicció</h2>
+  <p>
+    Aquest avís legal es regeix per la legislació espanyola. Per a qualsevol controvèrsia derivada de
+    l'ús del lloc web, les parts se sotmeten als jutjats i tribunals del domicili del titular, llevat
+    que la normativa de consum n'estableixi un altre d'imperatiu.
+  </p>
+</LegalLayout>

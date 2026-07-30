@@ -1,0 +1,123 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import LegalValue from '../components/LegalValue.astro';
+import { legalEntity, dataProcessing } from '../data/legal';
+import { route } from '../lib/asset';
+---
+
+<LegalLayout
+  title="Política de privacitat"
+  description="Com tracta Creativament les dades personals de qui visita el lloc web."
+  intro="Aquest lloc web no requereix registre ni crea perfils de qui el visita. Aquí s'explica què passa amb les dades en els únics casos en què n'hi ha."
+>
+  <h2>1. Responsable del tractament</h2>
+  <dl>
+    <dt>Responsable</dt>
+    <dd><LegalValue value={legalEntity.name} label="raó social o nom i cognoms" /></dd>
+
+    <dt>NIF / CIF</dt>
+    <dd><LegalValue value={legalEntity.taxId} label="NIF o CIF" /></dd>
+
+    <dt>Domicili</dt>
+    <dd><LegalValue value={legalEntity.address} label="domicili complet" /></dd>
+
+    <dt>Correu electrònic</dt>
+    <dd><a href={`mailto:${legalEntity.email}`}>{legalEntity.email}</a></dd>
+  </dl>
+
+  <h2>2. Quines dades es tracten</h2>
+  <p>
+    La simple navegació per aquest lloc web <strong>no comporta cap tractament de dades personals</strong
+    > per part del responsable: no s'hi fa servir cap sistema d'analítica, ni de seguiment, ni de publicitat,
+    ni s'hi elaboren perfils.
+  </p>
+
+  {
+    dataProcessing.formsActive ? (
+      <>
+        <p>
+          Quan s'envia el formulari de contacte o el d'subscripció, es tracten les dades que s'hi
+          faciliten: nom, adreça de correu electrònic i el contingut del missatge.
+        </p>
+        <dl>
+          <dt>Finalitat</dt>
+          <dd>Respondre la consulta o enviar la informació sol·licitada.</dd>
+
+          <dt>Base jurídica</dt>
+          <dd>El consentiment de la persona interessada (art. 6.1.a del RGPD).</dd>
+
+          <dt>Conservació</dt>
+          <dd>
+            <LegalValue value={dataProcessing.retention} label="termini de conservació" />
+          </dd>
+
+          <dt>Destinataris</dt>
+          <dd>
+            <LegalValue value={dataProcessing.processors} label="proveïdors que processen els enviaments" />
+          </dd>
+        </dl>
+      </>
+    ) : (
+      <p>
+        Els formularis d'aquest lloc (contacte i subscripció) són actualment una{' '}
+        <strong>demostració i no envien cap dada</strong>: en prémer el botó es mostra un avís i la
+        informació no surt del navegador ni s'emmagatzema enlloc. Quan es connectin, aquesta política
+        s'actualitzarà per detallar-ne la finalitat, la base jurídica, la conservació i els
+        destinataris.
+      </p>
+    )
+  }
+
+  <h2>3. Cessions i transferències</h2>
+  <p>
+    No es cedeixen dades a tercers, llevat d'obligació legal. Cal tenir en compte, però, dos serveis
+    tècnics que intervenen en la publicació del lloc:
+  </p>
+  <ul>
+    <li>
+      <strong>Allotjament.</strong> El lloc s'allotja en servidors de tercers que, com qualsevol servidor
+      web, poden registrar l'adreça IP de les peticions amb finalitats de seguretat i funcionament del
+      servei.
+    </li>
+    <li>
+      <strong>Tipografies.</strong> Les lletres es carreguen des de Google Fonts, cosa que implica que
+      el navegador connecta amb servidors de Google i li comunica l'adreça IP. No s'hi instal·len cookies.
+    </li>
+  </ul>
+
+  <h2>4. Drets de les persones interessades</h2>
+  <p>
+    Qualsevol persona pot exercir els drets d'accés, rectificació, supressió, oposició, limitació del
+    tractament i portabilitat escrivint a <a href={`mailto:${legalEntity.email}`}
+      >{legalEntity.email}</a
+    >, indicant quin dret vol exercir i acreditant-ne la identitat.
+  </p>
+  <p>
+    També es pot retirar el consentiment en qualsevol moment, sense que això afecti la licitud del
+    tractament anterior, i presentar una reclamació davant l'autoritat de control: l'<a
+      href="https://apdcat.gencat.cat"
+      rel="noopener">Autoritat Catalana de Protecció de Dades</a
+    > o l'<a href="https://www.aepd.es" rel="noopener">Agència Espanyola de Protecció de Dades</a>.
+  </p>
+
+  <h2>5. Menors d'edat</h2>
+  <p>
+    Bona part de les activitats de Creativament s'adrecen a infants i adolescents, però aquest lloc
+    web no està pensat perquè hi contactin directament: les consultes i inscripcions les han de fer
+    les persones que n'exerceixen la tutela legal.
+  </p>
+
+  <h2>6. Seguretat</h2>
+  <p>
+    El lloc es publica sobre connexió xifrada (HTTPS) i s'apliquen les mesures tècniques i
+    organitzatives raonables per protegir la informació que s'hi pugui tractar.
+  </p>
+
+  <h2>7. Canvis en aquesta política</h2>
+  <p>
+    Aquesta política es revisarà sempre que canviï la manera de tractar les dades, especialment quan
+    els formularis passin a enviar informació de debò. Vegeu també la <a
+      href={route('politica-de-cookies/')}>política de cookies</a
+    > i l'<a href={route('avis-legal/')}>avís legal</a>.
+  </p>
+</LegalLayout>

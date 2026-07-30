@@ -3,16 +3,16 @@ import InstagramLogo from '../icons/instagram-logo.svg';
 import FacebookLogo from '../icons/facebook-logo.svg';
 import YoutubeLogo from '../icons/youtube-logo.svg';
 import Envelope from '../icons/envelope.svg';
-import { asset } from '../lib/asset';
+import { asset, route } from '../lib/asset';
 ---
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <img class="footer-logo" src={asset('assets/images/logo.png')} alt="Creativament" />
     <div class="footer-links">
-      <a href="#">Avís legal</a>
-      <a href="#">Política de privacitat</a>
-      <a href="#">Política de cookies</a>
+      <a href={route('avis-legal/')}>Avís legal</a>
+      <a href={route('politica-de-privacitat/')}>Política de privacitat</a>
+      <a href={route('politica-de-cookies/')}>Política de cookies</a>
     </div>
     <div class="socials">
       <span>Segueix-nos</span>

@@ -29,7 +29,8 @@ npm run dev
 
 ```
 src/
-  pages/index.astro       la pàgina: només composa seccions
+  pages/index.astro       la portada: només composa seccions
+  pages/avis-legal…       les tres pàgines legals
   layouts/BaseLayout      <head>, tipografies, capçalera, peu
   components/             una secció = un component (marcatge + estils + script)
   data/                   el contingut editable
@@ -58,6 +59,7 @@ Dues regles que expliquen la resta:
 | Colors, tipografies, espaiat | `src/styles/global.css` |
 | Estils d'una secció concreta | el `<style>` d'aquell component |
 | Imatges | `public/assets/images/` |
+| Dades legals (NIF, domicili, col·legiat…) | `src/data/legal.ts` |
 | Icones | `src/icons/` (Phosphor; vegeu el sistema de disseny) |
 
 ## Comprovar que no has trencat res

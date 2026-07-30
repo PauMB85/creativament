@@ -1,0 +1,22 @@
+---
+/**
+ * Mostra una dada legal i, si encara no està omplerta a `src/data/legal.ts`,
+ * la marca en rosa perquè no passi desapercebuda a la previsualització.
+ */
+interface Props {
+  value: string;
+  label: string;
+}
+
+const { value, label } = Astro.props;
+const missing = value.trim() === '';
+---
+
+<span class:list={{ pending: missing }}>{missing ? `[PENDENT: ${label}]` : value}</span>
+
+<style>
+  .pending {
+    color: var(--pink);
+    font-weight: 600;
+  }
+</style>
